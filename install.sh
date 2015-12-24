@@ -1,5 +1,7 @@
 #/bin/bash
+cd /home/xbian/Flexget
 git submodule update --recursive
+cd -
 #/home/xbian/Flexget/provision.sh
 perl -pi -e "s/STORAGE/$DISK_NAME/g" /home/xbian/Flexget/make_folders.sh
 /home/xbian/Flexget/make_folders.sh
