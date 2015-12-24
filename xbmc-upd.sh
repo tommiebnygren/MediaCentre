@@ -1,0 +1,1 @@
+/usr/bin/wget --header='Content-Type:application/json' --post-data='{"jsonrpc": "2.0", "method": "VideoLibrary.Scan", "id": "xbian", "params": {"directory":"'"$TR_TORRENT_DIR"'/"}}' "http://localhost:8080/jsonrpc"

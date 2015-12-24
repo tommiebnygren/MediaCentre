@@ -48,8 +48,8 @@
                 - search_rss: http://showrss.info/rss.php?user_id=250602&hd=2&proper=null
         interval: 3 hour  # Search for expected episodes again every hour
         exists_series:
-          - /media/usb0/TV Shows/
-          - /media/usb0/Downloads/incomplete
+          - /media/STORAGE/TV Shows/
+          - /media/STORAGE/Downloads/incomplete
         regexp:
           reject:
             - \b(duo|tri|quadri|tetra|penta)logy\b: {from: title} 
@@ -85,7 +85,7 @@
           port: 9091
           username: TRANSMISSION_USERNAME
           password: TRANSMISSION_PASSWORD
-          path: /media/usb0/TV Shows/{{series_name|pathscrub}}/S{{"%02d"|format(series_season)}}  
+          path: /media/STORAGE/TV Shows/{{series_name|pathscrub}}/S{{"%02d"|format(series_season)}}  
           main_file_only: yes
           content_filename: "{{ tvdb_series_name }} - {{ tvdb_season }}x{{ tvdb_episode|pad(2) }} - {{ tvdb_ep_name|default('Missing title') }}"
 
@@ -125,15 +125,15 @@
           port: 9091
           username: TRANSMISSION_USERNAME
           password: TRANSMISSION_PASSWORD
-          path: /media/usb0/Movies
+          path: /media/STORAGE/Movies
         interval: 3 hour
  
 #      subtitles:
 #        priority: 5
 #        filesystem:
 #          path:
-#            - /media/usb0/TV Shows/
-#            - /media/usb0/Movies/
+#            - /media/STORAGE/TV Shows/
+#            - /media/STORAGE/Movies/
 #          recursive: yes
 #        accept_all: yes
 #        subliminal:
