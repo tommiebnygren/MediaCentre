@@ -8,7 +8,7 @@ COPY provision.sh provision.sh
 COPY settings.json settings.json
 COPY xbmc-upd.sh xbmc-upd.sh
 
-RUN provision.sh
-RUN source export.sh
+RUN sh provision.sh
+RUN sh source export.sh
 
 CMD install.sh
