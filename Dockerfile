@@ -1,4 +1,4 @@
-FROM hypriot/rpi-gogs-alpine
+FROM hypriot/rpi-python
 
 COPY config.yml config.yml
 COPY export.sh export.sh
