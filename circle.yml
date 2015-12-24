@@ -1,0 +1,18 @@
+machine:
+  services:
+    - docker
+
+
+dependencies:
+  override:
+    - docker login --username=$DOCKERHUB_USERNAME --email=$DOCKERHUB_EMAIL --password=$DOCKERHUB_PASSWORD
+
+test:
+  override:
+      - docker build -t tokko/flexget:$CIRCLE_BRANCH .
+
+deployment:
+  deployed:
+    branch: /.*-deployed/
+    commands:
+      - docker push tokko/flexget:$CIRCLE_BRANCH
