@@ -1,5 +1,5 @@
 #!/bin/bash
 mkdir -p ~/.flexget
-mkdir -p /media/usb0/Downloads/incomplete
-mkdir -p /media/usb0/TV\ Shows
-mkdir -p /media/usb0/Movies
+mkdir -p /media/$DISK_STORAGE/Downloads/incomplete
+mkdir -p /media/$DISK_STORAGE/TV\ Shows
+mkdir -p /media/$DISK_STORAGE/Movies
