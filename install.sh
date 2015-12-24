@@ -1,5 +1,6 @@
 #/bin/bash
 git pull
+./provision.sh
 ./make_folders.sh
 flexget daemon stop
 sudo service transmission-daemon stop
