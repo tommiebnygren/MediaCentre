@@ -8,7 +8,14 @@ COPY provision.sh provision.sh
 COPY settings.json settings.json
 COPY xbmc-upd.sh xbmc-upd.sh
 
-RUN sh provision.sh
-RUN sh source export.sh
+RUN apt-get update
+RUN apt-get -y dist-upgrade
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get install -y python transmission-daemon vim
+RUN easy_install pip
+RUN pip install flexget transmissionrpc
+RUN pip install flexget transmissionrpc --upgrade
+#RUN sh source export.sh
 
 CMD install.sh
