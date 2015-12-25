@@ -1,4 +1,4 @@
-FROM hypriot/rpi-python
+FROM hypriot/rpi-python:latest
 
 COPY config.yml config.yml
 COPY export.sh export.sh
@@ -14,6 +14,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get install -y python transmission-daemon vim
 RUN easy_install pip
+RUN pip install pip --upgrade
 RUN pip install flexget transmissionrpc
 RUN pip install flexget transmissionrpc --upgrade
 #RUN sh source export.sh
