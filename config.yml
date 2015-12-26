@@ -83,8 +83,8 @@
         transmission:
           host: localhost
           port: 9091
-          username: TRANSMISSION_USERNAME
-          password: TRANSMISSION_PASSWORD
+          username: transmission
+          password: transmission
           path: /media/STORAGE/TV Shows/{{series_name|pathscrub}}/S{{"%02d"|format(series_season)}}  
           main_file_only: yes
           content_filename: "{{ tvdb_series_name }} - {{ tvdb_season }}x{{ tvdb_episode|pad(2) }} - {{ tvdb_ep_name|default('Missing title') }}"
@@ -123,8 +123,8 @@
         transmission:
           host: localhost
           port: 9091
-          username: TRANSMISSION_USERNAME
-          password: TRANSMISSION_PASSWORD
+          username: transmission
+          password: transmission
           path: /media/STORAGE/Movies
         interval: 3 hour
  
@@ -151,8 +151,8 @@
         clean_transmission:
           host: localhost
           port: 9091
-          username: TRANSMISSION_USERNAME
-          password: TRANSMISSION_PASSWORD
+          username: transmission
+          password: transmission
           finished_for: 12 hours
           transmission_seed_limits: yes
           enabled: yes
