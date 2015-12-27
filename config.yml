@@ -48,8 +48,8 @@
                 - search_rss: http://showrss.info/rss.php?user_id=250602&hd=2&proper=null
         interval: 3 hour  # Search for expected episodes again every hour
         exists_series:
-          - /media/STORAGE/TV Shows/
-          - /media/STORAGE/Downloads/incomplete
+          - STORAGE/TV Shows/
+          - STORAGE/Downloads/incomplete
         regexp:
           reject:
             - \b(duo|tri|quadri|tetra|penta)logy\b: {from: title} 
@@ -85,7 +85,7 @@
           port: 9091
           username: transmission
           password: transmission
-          path: /media/STORAGE/TV Shows/{{series_name|pathscrub}}/S{{"%02d"|format(series_season)}}  
+          path: STORAGE/TV Shows/{{series_name|pathscrub}}/S{{"%02d"|format(series_season)}}  
           main_file_only: yes
           content_filename: "{{ tvdb_series_name }} - {{ tvdb_season }}x{{ tvdb_episode|pad(2) }} - {{ tvdb_ep_name|default('Missing title') }}"
 
@@ -125,7 +125,7 @@
           port: 9091
           username: transmission
           password: transmission
-          path: /media/STORAGE/Movies
+          path: STORAGE/Movies
         interval: 3 hour
  
 #      subtitles:

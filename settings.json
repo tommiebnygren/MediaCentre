@@ -12,7 +12,7 @@
     "blocklist-url": "", 
     "cache-size-mb": 4, 
     "dht-enabled": true, 
-    "download-dir": "/usb0/TV Shows", 
+    "download-dir": "STORAGE/TV Shows", 
     "download-limit": 100, 
     "download-limit-enabled": 0, 
     "download-queue-enabled": true, 
@@ -20,7 +20,7 @@
     "encryption": 0, 
     "idle-seeding-limit": 30, 
     "idle-seeding-limit-enabled": false, 
-    "incomplete-dir": "/media/usb0/Downloads/incomplete", 
+    "incomplete-dir": "STORAGE/Downloads/incomplete", 
     "incomplete-dir-enabled": true, 
     "lpd-enabled": false, 
     "max-peers-global": 200, 
@@ -68,6 +68,6 @@
     "upload-limit-enabled": 0, 
     "upload-slots-per-torrent": 14, 
     "utp-enabled": true, 
-    "watch-dir": "/home/usb/Downloads/torrents", 
+    "watch-dir": "STORAGE/Downloads/torrents", 
     "watch-dir-enabled": true
 }

@@ -1,5 +1,4 @@
 #!/bin/bash
-export TRAKT_USERNAME=honeyflakes
-export TRAKT_ACCOUNT=honeyflakes
-export TRANSMISSION_USERNAME=cagus
-export TRANSMISSION_PASSWORD=cagus
+export TRAKT_USERNAME=tokko
+export TRAKT_ACCOUNT=tokko
+export MEDIA_PATH=\/media\/Storage

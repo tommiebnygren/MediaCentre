@@ -2,6 +2,8 @@ build:
 	cat Dockerfile.rpi Dockerfile.base > Dockerfile
 	sudo docker build -t tokko/flexget:latest .
 
+rundev: dev
+	sudo docker run -t -i tokko/flexget:latest /bin/bash
 dev:
 	cat Dockerfile.dev Dockerfile.base > Dockerfile
 	sudo docker build -t tokko/flexget:latest .
