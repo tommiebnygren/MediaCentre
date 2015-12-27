@@ -1,4 +1,9 @@
 build:
+	cat Dockerfile.rpi Dockerfile.base > Dockerfile
+	sudo docker build -t tokko/flexget:latest .
+
+dev:
+	cat Dockerfile.dev Dockerfile.base > Dockerfile
 	sudo docker build -t tokko/flexget:latest .
 
 push:
@@ -11,4 +16,5 @@ install:
 	sudo ln -s `which nodejs` /usr/bin/node
 
 clean:
-	rm docker-hypriot_1.9.1-1_armhf.deb
+	rm -f docker-hypriot_1.9.1-1_armhf.deb
+	rm -f Dockerfile
