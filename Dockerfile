@@ -11,7 +11,7 @@ RUN pip install -U pip
 RUN pip install flexget transmissionrpc
 RUN pip install flexget transmissionrpc --upgrade
 
-COPY config.yml /root/config.yml
+COPY config.yml_template /root/config.yml_template
 COPY make_folders.sh /root/make_folders.sh
 COPY install.sh /root/install.sh
 COPY settings.json /root/settings.json
