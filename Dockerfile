@@ -1,4 +1,4 @@
-FROM google/python:latest
+FROM hypriot/rpi-python:latest
 
 
 RUN apt-get update
@@ -9,7 +9,7 @@ RUN apt-get install -yq curl python-dev && apt-get clean
 RUN curl https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install -U pip
 RUN pip install flexget transmissionrpc
-RUN pip install flexget transmissionrpc --upgrade
+#RUN pip install flexget transmissionrpc --upgrade
 
 COPY config.yml_template /root/config.yml_template
 COPY make_folders.sh /root/make_folders.sh
