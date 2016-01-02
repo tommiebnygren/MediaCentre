@@ -25,7 +25,9 @@ installdev: install
 install: docker crontab
 	mkdir ~/.flexget	
 	cp update_flexget.sh ~/.flexget
+	cp export.sh ~/.flexget
 	crontab -l 2>/dev/null | grep update_flexget.sh && echo "Flexget crontab already present" || echo "45 23 * * * * ~/.flexget/update_flexget.sh" | crontab -
+	crontab -l 2>/dev/null | grep export.sh && echo "exports already setup" || echo "@reboot source ~/.flexget/export.sh | crontab -
 	~/.flexget/update_flexget.sh
 
 crontab:
