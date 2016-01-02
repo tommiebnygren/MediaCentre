@@ -28,7 +28,7 @@ install: docker crontab
 	crontab -l 2>/dev/null | grep update_flexget.sh && echo "Flexget crontab already present" || echo "45 23 * * * * ~/.flexget/update_flexget.sh" | crontab -
 
 crontab:
-	sudo apt-get install crontab
+	sudo apt-get install -y crontab
 
 docker:
 	wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
@@ -37,3 +37,6 @@ clean:
 	rm -f docker-hypriot_1.9.1-1_armhf.deb
 	rm -f Dockerfile
 	sudo rm -rf tmp
+
+cleanall:
+	rm -rf ../Flexget
