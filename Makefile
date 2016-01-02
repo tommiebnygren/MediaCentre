@@ -11,19 +11,28 @@ rundev: dev tmp
 tmp:
 	mkdir tmp
 
-dev:	config.yml_template install.sh make_folders.sh settings.json Dockerfile.dev provision.sh xbmc-upd.sh Dockerfile.base
+dev:	config.yml_template install.sh make_folders.sh settings.json Dockerfile.dev xbmc-upd.sh Dockerfile.base
 	cat Dockerfile.dev Dockerfile.base > Dockerfile
 	sudo docker build -t tokko/flexget:dev .
 
 push:
 	sudo docker push tokko/flexget:latest .
 
-install: 
-	wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
-	sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
+installdev: install
 	sudo apt-get install -y make npm nodejs
 	sudo ln -s `which nodejs` /usr/bin/node
 
+install: docker crontab
+	mkdir ~/.flexget	
+	cp update_flexget.sh ~/.flexget
+	crontab -l 2>/dev/null | grep update_flexget.sh && echo "Flexget crontab already present" || echo "45 23 * * * * ~/.flexget/update_flexget.sh" | crontab -
+
+crontab:
+	sudo apt-get install crontab
+
+docker:
+	wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
+	sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
 clean:
 	rm -f docker-hypriot_1.9.1-1_armhf.deb
 	rm -f Dockerfile

@@ -1,4 +1,4 @@
-FROM hypriot/rpi-python:latest
+FROM google/python:latest
 
 RUN apt-get update 
 RUN apt-get install -y python transmission-daemon curl && apt-get remove -y python-pip
