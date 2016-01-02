@@ -1,5 +1,4 @@
 ~/make_folders.sh
-flexget daemon stop
 service transmission-daemon stop
 
 cp ./config.yml_template ~/.flexget/config.yml

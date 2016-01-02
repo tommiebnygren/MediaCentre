@@ -13,7 +13,6 @@ Flask-Login==0.3.2
 Flask-RESTful==0.3.5
 flask-restplus==0.7.2
 FlexGet==1.2.420
-functools32==3.2.3.post2
 futures==3.0.3
 guessit==0.10.3
 html5lib==0.9999999
