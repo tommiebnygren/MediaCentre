@@ -69,5 +69,6 @@
     "upload-slots-per-torrent": 14, 
     "utp-enabled": true, 
     "watch-dir": "root/Storage/Downloads/torrents", 
-    "watch-dir-enabled": true
+    "watch-dir-enabled": true,
+    "queue-stalled-enabled": true
 }
