@@ -13,17 +13,20 @@ runtransmissiondevi: transmissiondev
 	docker run -p -ti  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev bash
 
 runtransmissiondev: transmissiondev
-	docker run -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev &
+	docker run --name transmission -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev &
 
 transmissiondev: tmp
 	cp Dockerfile.dev Dockerfile.transmissiondev && tail -n +2 < Dockerfile.transmission >> Dockerfile.transmissiondev 
 	sudo docker build -t tokko/transmission:dev -f Dockerfile.transmissiondev .
 
 runprod: build tmp
-	sudo docker run -t -i -e TRAKT_USERNAME=tokko -e TRAKT_ACCOUNT=tokko -e DISK_NAME=Storage -e SUBFOLDER=flexget -v $(HOME)/Flexget/tmp:/media/Storage tokko/flexget:latest /bin/bash
+	sudoudocker run -ti -e TRAKT_USERNAME=tokko -e TRAKT_ACCOUNT=tokko -v $(HOME)/Flexget/tmp:/root/Storage tokko/flexget:latest /bin/bash
 
-rundev: dev tmp
-	sudo docker run -t -i -e TRAKT_USERNAME=tokko -e TRAKT_ACCOUNT=tokko -e DISK_NAME=Storage -e SUBFOLDER=flexget -v $(HOME)/Flexget/tmp:/media/Storage -v $(HOME)/tmp/db-config.sqlite:/root/.flexget/db-config.sqlite tokko/flexget:latest /bin/bash
+rundevi: dev tmp runtransmissiondev
+	sudo docker run -ti --link transmission:transmission -e TRAKT_USERNAME=grishnuk -e TRAKT_ACCOUNT=grishnuk -v $(HOME)/Flexget/tmp:/root/Storage -v $(HOME)/tmp/.flexget:/root/.flexget/ tokko/flexget:dev /bin/bash
+
+rundev: dev tmp runtransmissiondev
+	sudo docker run --name flexget --link transmission:transmission -e TRAKT_USERNAME=grishnuk -e TRAKT_ACCOUNT=grishnuk -v $(HOME)/Flexget/tmp:/root/Storage -v $(HOME)/tmp/.flexget:/root/.flexget/ tokko/flexget:dev
 
 tmp:
 	mkdir -p tmp/.flexget
