@@ -1,6 +1,8 @@
-build:
+build: tmp
 	cat Dockerfile.rpi Dockerfile.base > Dockerfile
 	sudo docker build -t tokko/flexget:latest .
+transmission: tmp
+	sudo docker build -t tokko/transmission:latest -f Dockerfile.transmission .
 
 runprod: build tmp
 	sudo docker run -t -i -e TRAKT_USERNAME=tokko -e TRAKT_ACCOUNT=tokko -e DISK_NAME=Storage -e SUBFOLDER=flexget -v $(HOME)/Flexget/tmp:/media/Storage tokko/flexget:latest /bin/bash
@@ -9,7 +11,9 @@ rundev: dev tmp
 	sudo docker run -t -i -e TRAKT_USERNAME=tokko -e TRAKT_ACCOUNT=tokko -e DISK_NAME=Storage -e SUBFOLDER=flexget -v $(HOME)/Flexget/tmp:/media/Storage -v $(HOME)/tmp/db-config.sqlite:/root/.flexget/db-config.sqlite tokko/flexget:latest /bin/bash
 
 tmp:
-	mkdir tmp
+	mkdir -p tmp/.flexget
+	mkdir -p tmp/.transmissionetc
+	mkdir -p tmp/flexget
 
 dev:	config.yml_template install.sh make_folders.sh settings.json Dockerfile.dev xbmc-upd.sh Dockerfile.base
 	cat Dockerfile.dev Dockerfile.base > Dockerfile
@@ -28,5 +32,5 @@ clean:
 	rm -f Dockerfile
 	sudo rm -rf tmp
 
-cleanall:
+cleanall: clean
 	rm -rf ../Flexget
