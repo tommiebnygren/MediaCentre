@@ -2,22 +2,22 @@ all: build transmission
 
 alldev: dev transmissiondev
 
-build: tmp
+build: tmp Dockerfile.base Dockerfile.rpi config.yml_template install.sh make_folders.sh requirements.txt
 	cat Dockerfile.rpi Dockerfile.base > Dockerfile
-	sudo docker build -t tokko/flexget:latest .
+	sudo docker build -rm -t tokko/flexget:latest .
 
-transmission: tmp
-	sudo docker build -t tokko/transmission:latest -f Dockerfile.transmission .
+transmission: tmp Dockerfile.transmission make_folders.sh settings.json xbmc-upd.sh
+	sudo docker build -rm -t tokko/transmission:latest -f Dockerfile.transmission .
 
 runtransmissiondevi: transmissiondev
-	docker run -p -ti  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev bash
+	docker run -ti -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev bash
 
 runtransmissiondev: transmissiondev
 	docker run --name transmission -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev &
 
-transmissiondev: tmp
+transmissiondev: tmp Dockerfile.transmission make_folders.sh settings.json xbmc-upd.sh
 	cp Dockerfile.dev Dockerfile.transmissiondev && tail -n +2 < Dockerfile.transmission >> Dockerfile.transmissiondev 
-	sudo docker build -t tokko/transmission:dev -f Dockerfile.transmissiondev .
+	sudo docker build -rm -t tokko/transmission:dev -f Dockerfile.transmissiondev .
 
 runprod: build tmp
 	sudoudocker run -ti -e TRAKT_USERNAME=tokko -e TRAKT_ACCOUNT=tokko -v $(HOME)/Flexget/tmp:/root/Storage tokko/flexget:latest /bin/bash
@@ -36,9 +36,9 @@ tmp:
 	mkdir -p tmp/flexget/Movies
 	mkdir -p tmp/flexget/TV\ Shows
 
-dev: tmp	
+dev: tmp Dockerfile.base Dockerfile.dev config.yml_template install.sh make_folders.sh requirements.txt
 	cat Dockerfile.dev Dockerfile.base > Dockerfile
-	sudo docker build -t tokko/flexget:dev .
+	sudo docker build -rm -t tokko/flexget:dev .
 
 push:
 	sudo docker push tokko/flexget:latest .

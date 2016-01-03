@@ -12,7 +12,7 @@
     "blocklist-url": "", 
     "cache-size-mb": 4, 
     "dht-enabled": true, 
-    "download-dir": "root/Storage/Downloads", 
+    "download-dir": "/root/Storage/Downloads", 
     "download-limit": 100, 
     "download-limit-enabled": 0, 
     "download-queue-enabled": true, 
@@ -68,7 +68,7 @@
     "upload-limit-enabled": 0, 
     "upload-slots-per-torrent": 14, 
     "utp-enabled": true, 
-    "watch-dir": "root/Storage/Downloads/torrents", 
+    "watch-dir": "/root/Storage/Downloads/torrents", 
     "watch-dir-enabled": true,
     "queue-stalled-enabled": true
 }
