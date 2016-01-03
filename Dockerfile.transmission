@@ -1,0 +1,9 @@
+FROM hypriot/rpi-python:latest
+
+EXPOSE 9091 9091
+RUN apt-get update
+RUN apt-get install -y transmission-daemon
+COPY xbmc-upd.sh /etc/transmission-daemon/xbmc-upd.sh
+RUN service transmission-daemon stop
+COPY settings.json /etc/transmission-daemon/settings.json
+#RUN service transmission-daemon start
