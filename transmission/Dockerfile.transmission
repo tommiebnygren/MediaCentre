@@ -12,8 +12,8 @@ RUN mkdir -p /root/.config/transmission-daemon
 VOLUME /root/.config/transmission-daemon
 
 COPY make_folders.sh /root/make_folders.sh
-COPY xbmc-upd.sh /root/xbmc-upd.sh 
-COPY settings.json /root/settings.json
-COPY transmission.sh /root/transmission.sh
+COPY transmission/xbmc-upd.sh /root/xbmc-upd.sh 
+COPY transmission/settings.json /root/settings.json
+COPY transmission/transmission.sh /root/transmission.sh
 
 CMD /root/transmission.sh

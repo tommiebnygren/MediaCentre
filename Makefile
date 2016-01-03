@@ -6,8 +6,8 @@ build: tmp flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template fl
 	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
 	sudo docker build -rm -t tokko/flexget:latest .
 
-transmission: tmp Dockerfile.transmission make_folders.sh settings.json xbmc-upd.sh
-	sudo docker build -rm -t tokko/transmission:latest -f Dockerfile.transmission .
+transmission: tmp transmission/Dockerfile.transmission make_folders.sh transmission/settings.json transmission/xbmc-upd.sh
+	sudo docker build -rm -t tokko/transmission:latest -f transmission/Dockerfile.transmission .
 
 runtransmissiondevi: transmissiondev
 	docker run -ti -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev bash
@@ -15,8 +15,8 @@ runtransmissiondevi: transmissiondev
 runtransmissiondev: transmissiondev
 	docker run --name transmission -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev &
 
-transmissiondev: tmp Dockerfile.transmission make_folders.sh settings.json xbmc-upd.sh
-	cp Dockerfile.dev Dockerfile.transmissiondev && tail -n +2 < Dockerfile.transmission >> Dockerfile.transmissiondev 
+transmissiondev: tmp transmission/Dockerfile.transmission make_folders.sh transmission/settings.json transmission/xbmc-upd.sh
+	cp Dockerfile.dev Dockerfile.transmissiondev && tail -n +2 < transmission/Dockerfile.transmission >> Dockerfile.transmissiondev 
 	sudo docker build -rm -t tokko/transmission:dev -f Dockerfile.transmissiondev .
 
 runprod: build tmp
