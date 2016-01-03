@@ -2,8 +2,8 @@ all: build transmission
 
 alldev: dev transmissiondev
 
-build: tmp Dockerfile.base Dockerfile.rpi config.yml_template install.sh make_folders.sh requirements.txt
-	cat Dockerfile.rpi Dockerfile.base > Dockerfile
+build: tmp flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/install.sh make_folders.sh rflexget/equirements.txt
+	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
 	sudo docker build -rm -t tokko/flexget:latest .
 
 transmission: tmp Dockerfile.transmission make_folders.sh settings.json xbmc-upd.sh
@@ -36,8 +36,8 @@ tmp:
 	mkdir -p tmp/flexget/Movies
 	mkdir -p tmp/flexget/TV\ Shows
 
-dev: tmp Dockerfile.base Dockerfile.dev config.yml_template install.sh make_folders.sh requirements.txt
-	cat Dockerfile.dev Dockerfile.base > Dockerfile
+dev: tmp flexget/Dockerfile.base Dockerfile.dev flexget/config.yml_template flexget/install.sh make_folders.sh flexget/requirements.txt
+	cat Dockerfile.dev flexget/Dockerfile.base > Dockerfile
 	sudo docker build -rm -t tokko/flexget:dev .
 
 push:
