@@ -1,18 +1,18 @@
-all: build transmission
+all: build transmissionimage fileserverimage
 
 alldev: dev transmissiondev
 
-build: tmp flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/install.sh make_folders.sh rflexget/equirements.txt
+build: flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/install.sh make_folders.sh flexget/requirements.txt
 	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
 	sudo docker build -rm -t tokko/flexget:latest .
 
-transmission: tmp transmission/Dockerfile.transmission make_folders.sh transmission/settings.json transmission/xbmc-upd.sh
+transmissionimage: 
 	sudo docker build -rm -t tokko/transmission:latest -f transmission/Dockerfile.transmission .
 
-runtransmissiondevi: transmissiondev
+runtransmissiondevi: transmissiondev tmp
 	docker run -ti -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev bash
 
-runtransmissiondev: transmissiondev
+runtransmissiondev: transmissiondev tmp
 	docker run --name transmission -p  9091:9091 -v $(PWD)/tmp/.transmissionetc:/root/.config/transmission-daemon -v $(PWD)/tmp/flexget:/root/Storage tokko/transmission:dev &
 
 transmissiondev: tmp transmission/Dockerfile.transmission make_folders.sh transmission/settings.json transmission/xbmc-upd.sh
@@ -40,13 +40,19 @@ dev: tmp flexget/Dockerfile.base Dockerfile.dev flexget/config.yml_template flex
 	cat Dockerfile.dev flexget/Dockerfile.base > Dockerfile
 	sudo docker build -rm -t tokko/flexget:dev .
 
-push:
-	sudo docker push tokko/flexget:latest .
+pushall: all
+	sudo docker push tokko/flexget:latest
+	sudo docker push tokko/transmission:latest
+	sudo docker push tokko/fileserver:latest
 
-installdev: install
-	sudo apt-get install -y make npm nodejs
-	sudo ln -s `which nodejs` /usr/bin/node
+fileserverimage:
+	sudo docker build -t tokko/fileserver:latest -f fileserver/Dockerfile .
 
+pushfileserver: fileserverimage
+	sudo docker push tokko/fileserver:latest
+
+install:
+	sh install_host.sh
 
 clean:
 	rm -f docker-hypriot_1.9.1-1_armhf.deb
