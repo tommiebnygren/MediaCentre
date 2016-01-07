@@ -1,6 +1,6 @@
 all: flexgetimage transmissionimage fileserverimage
 
-flexgetimage: flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/install.sh make_folders.sh flexget/requirements.txt
+flexgetimage: flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/flexget.sh make_folders.sh flexget/requirements.txt
 	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
 	sudo docker build --rm=true -t tokko/flexget:latest .
 
@@ -15,6 +15,9 @@ runflexget: flexgetimage
 	sudo docker rm -f flexget
 	sudo docker run --restart=always --name flexget --link transmission:transmission -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUN=$(TRAKT_ACCOUNT) -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest &
 
+runflexgetauth:
+	sudo docker pull tokko/flexget:latest
+	sudo docker run -ti --rm=true -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUN=$(TRAKT_ACCOUNT) -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest bush
 runtransmissioni: transmissionimage
 	docker run -ti --rm=true -p 9092:9091 -v $(HOME)/.transmission:/root/.config/transmission-daemon -v $(MEDIA_PATH):/root/Storage tokko/transmission:latest bash
 
