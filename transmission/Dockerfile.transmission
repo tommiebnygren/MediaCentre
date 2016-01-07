@@ -1,19 +1,14 @@
 FROM hypriot/rpi-python:latest
 
-RUN apt-get update
-RUN apt-get install -y transmission-daemon cron
+RUN apt-get update && apt-get install -y transmission-daemon cron
 RUN service transmission-daemon stop
 RUN echo "*/5 * * * * transmission-remote -t all --start" | crontab -
 
-EXPOSE 9091 9091
-EXPOSE 8080 8080
+EXPOSE 9091
 
 RUN mkdir -p /root/.config/transmission-daemon
 VOLUME /root/.config/transmission-daemon
 
-COPY make_folders.sh /root/make_folders.sh
-COPY transmission/xbmc-upd.sh /root/xbmc-upd.sh 
-COPY transmission/settings.json /root/settings.json
-COPY transmission/transmission.sh /root/transmission.sh
+COPY make_folders.sh transmission/xbmc-upd.sh transmission/settings.json transmission/transmission.sh /root/
 
 CMD /root/transmission.sh
