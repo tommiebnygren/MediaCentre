@@ -24,6 +24,7 @@ UPDATE_COMMAND="curl $UPDATE_IP:$UPDATE_PORT/update.sh | sh"
 crontab -l >> mycron
 
 cat mycron | grep "update.sh" && echo "update already setup" || echo "45 23 * * * $UPDATE_COMMAND" >> mycron
+cat mycron | grep "export" && echo "export already setup" || echo "@reboot source $HOME/.flexget/export.sh" >> mycron
 
 crontab mycron
 rm mycron
