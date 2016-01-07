@@ -10,6 +10,6 @@ RUN pip install -r /root/requirements.txt --ignore-installed
 
 VOLUME /root/Storage
 
-COPY make_folders.sh flexget/config.yml_template flexget/install.sh /root/
+COPY make_folders.sh flexget/config.yml_template flexget/flexget.sh /root/
 
 CMD /root/install.sh
