@@ -68,7 +68,7 @@
     "upload-limit-enabled": 0, 
     "upload-slots-per-torrent": 14, 
     "utp-enabled": true, 
-    "watch-dir": "/root/Storage/Downloads/torrents", 
+    "watch-dir": "/root/.config/transmission-daemon/torrents", 
     "watch-dir-enabled": true,
     "queue-stalled-enabled": true
 }

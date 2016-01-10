@@ -12,8 +12,7 @@ runtransmission: transmissionimage
 	sudo docker run --restart=always -p 9091:9091 --name transmission -v $MEDIA_PATH:/root/Storage -v $(HOME)/.transmission:/root/.config/transmission-daemon tokko/transmission:latest &
 
 runflexget: flexgetimage
-	sudo docker rm -f flexget
-	sudo docker run --restart=always --name flexget --link transmission:transmission -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest &
+	sudo docker rm -f flexget ; ./start_flexget.sh
 
 runflexgetauth:
 	sudo docker pull tokko/flexget:latest
@@ -36,7 +35,7 @@ fileserverimage:
 	sudo docker build --rm=true -t tokko/fileserver:latest -f fileserver/Dockerfile .
 
 runfileserver: fileserverimage
-	(sudo docker ps | grep fileserver && sudo docker start fileserver) || sudo docker run --restart=always --name fileserver -p $(UPDATE_PORT):7070 tokko/fileserver:latest &
+	(sudo docker ps | grep fileserver && sudo docker start fileserver) || ./start_fileserver.sh 
 
 
 pushfileserver: fileserverimage
