@@ -4,6 +4,7 @@ sudo apt-get install -y cron curl make
 
 wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
 sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
+sudo docker daemon 1>/dev/null &
 rm -f docker-hypriot_1.9.1-1_armhf.deb*
 sudo systemctl enable docker
 sudo newgroup docker ;
@@ -29,7 +30,6 @@ cat mycron | grep "export" && echo "export already setup" || echo "@reboot sourc
 crontab mycron
 rm mycron
 
-sudo docker daemon 1>/dev/null &
-sleep 60 && make runflexgetauth
+sleep 30 && make runflexgetauth TRAKT_PIN=$1
 
 ./update.sh
