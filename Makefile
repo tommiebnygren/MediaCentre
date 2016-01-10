@@ -4,6 +4,9 @@ flexgetimage: flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template
 	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
 	sudo docker build --rm=true -t tokko/flexget:latest .
 
+pushflexget: flexgetimage
+	sudo docker push tokko/flexget:latest
+
 transmissionimage: 
 	sudo docker build --rm=true -t tokko/transmission:latest -f transmission/Dockerfile.transmission .
 

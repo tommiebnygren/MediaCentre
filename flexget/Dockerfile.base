@@ -12,4 +12,4 @@ VOLUME /root/Storage
 
 COPY make_folders.sh flexget/config.yml_template flexget/flexget.sh /root/
 
-CMD /root/install.sh
+CMD /root/flexget.sh
