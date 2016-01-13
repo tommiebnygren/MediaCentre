@@ -1,3 +1,4 @@
+#!/bin/bash
 #rm -f/root/requirements.txt
 
 /root/make_folders.sh

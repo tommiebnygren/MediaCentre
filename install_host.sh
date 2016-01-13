@@ -7,7 +7,7 @@ sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
 sudo docker daemon 1>/dev/null &
 rm -f docker-hypriot_1.9.1-1_armhf.deb*
 sudo systemctl enable docker
-sudo newgroup docker ;
+sudo newgrp docker ;
 sudo gpasswd -a $USER docker
 
 mkdir -p ~/.flexget	

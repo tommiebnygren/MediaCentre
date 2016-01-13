@@ -17,10 +17,9 @@ runtransmission: transmissionimage
 runflexget: flexgetimage
 	sudo docker rm -f flexget ; ./start_flexget.sh
 
-runflexgetauth: runflexget
-	sudo docker exec flexget "flexget trakt auth $(TRAKT_USERNAME) $(TRAKT_PIN)
-	#sudo docker pull tokko/flexget:latest
-	#sudo docker run -ti --rm=true -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(HOME)/.flexget:/root/.flexget -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest bash
+runflexgetauth: 
+	sudo docker pull tokko/flexget:latest
+	sudo docker run --rm=true -ti -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(HOME)/.flexget:/root/.flexget -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest /root/auth.sh $(TRAKT_PIN)
 
 runtransmissioni: transmissionimage
 	docker run -ti --rm=true -p 9092:9091 -v $(HOME)/.transmission:/root/.config/transmission-daemon -v $(MEDIA_PATH):/root/Storage tokko/transmission:latest bash
@@ -38,7 +37,7 @@ runpushfileserver: fileserverimage runfileserver pushfileserver
 fileserverimage:
 	sudo docker build --rm=true -t tokko/fileserver:latest -f fileserver/Dockerfile .
 
-runfileserver: fileserverimage
+runfileserver: 
 	(sudo docker ps | grep fileserver && sudo docker start fileserver) || ./start_fileserver.sh 
 
 
