@@ -8,3 +8,6 @@ perl -pi -e "s/TRAKT_USERNAME/$TRAKT_USERNAME/g" /root/.flexget/config.yml
 perl -pi -e "s/TRAKT_ACCOUNT/$TRAKT_ACCOUNT/g" /root/.flexget/config.yml
 
 flexget daemon start $1
+if [ $1 != "" ] ; then
+	flexget daemon trakt auth $TRAKT_ACCOUNT $1
+fi

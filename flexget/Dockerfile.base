@@ -12,5 +12,5 @@ VOLUME /root/Storage
 
 CMD /root/flexget.sh
 
-COPY flexget/auth.sh make_folders.sh flexget/config.yml_template flexget/flexget.sh /root/
+COPY make_folders.sh flexget/config.yml_template flexget/flexget.sh /root/
 

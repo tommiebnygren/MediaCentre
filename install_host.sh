@@ -13,6 +13,7 @@ sudo gpasswd -a $USER docker
 mkdir -p ~/.flexget	
 mkdir -p ~/.transmission
 
+source export.sh
 cp export.sh ~/.flexget
 
 sudo cp onboot.sh /etc/cron.daily
