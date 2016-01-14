@@ -1,14 +1,16 @@
 #!/bin/bash
-sudo apt-get update
-sudo apt-get install -y cron curl make
-
-wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
-sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
-sudo docker daemon 1>/dev/null &
-rm -f docker-hypriot_1.9.1-1_armhf.deb*
-sudo systemctl enable docker
-sudo newgrp docker ;
-sudo gpasswd -a $USER docker
+OUTPUT = dpkg -l | grep docker-hypriot
+if [ $OUTPUT == "" ] ; then
+	sudo apt-get update
+	sudo apt-get install -y cron curl make
+	wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
+	sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
+	sudo docker daemon 1>/dev/null &
+	rm -f docker-hypriot_1.9.1-1_armhf.deb*
+	sudo systemctl enable docker
+	sudo newgrp docker ;
+	sudo gpasswd -a $USER docker
+fi
 
 mkdir -p ~/.flexget	
 mkdir -p ~/.transmission

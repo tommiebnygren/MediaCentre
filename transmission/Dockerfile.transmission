@@ -1,5 +1,4 @@
-FROM ubuntu
-#FROM hypriot/rpi-python:latest
+FROM hypriot/rpi-python:latest
 
 RUN apt-get update && apt-get install -y python transmission-daemon cron vim
 RUN service transmission-daemon stop
