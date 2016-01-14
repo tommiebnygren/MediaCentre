@@ -121,7 +121,7 @@
         movie_queue: accept
         quality: 720p-1080p
         transmission:
-          host: transmission
+          host: localhost
           port: 9091
           username: transmission
           password: transmission
@@ -149,7 +149,7 @@
       cleanup:
         priority: 6
         clean_transmission:
-          host: transmission
+          host: localhost
           port: 9091
           username: transmission
           password: transmission

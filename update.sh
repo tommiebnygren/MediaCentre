@@ -9,7 +9,7 @@ if [ "$RES" != "" ] || [ "$RES1" == "" ] ; then
 	echo "removing transmission container"
 	sudo docker rm -f transmission
 	echo "starting transmission container"
-	sudo docker run --restart=always -p 9091:9091 --name transmission -v $MEDIA_PATH:/root/Storage -v $HOME/.transmission:/root/.config/transmission-daemon tokko/transmission:latest &
+	sudo docker run --restart=always -p 9091:9091 --name transmission -v $MEDIA_PATH:/media/Storage -v $HOME/.transmission:/var/lib/transmission-daemon tokko/transmission:latest &
 	echo "transmission started"
 else
 	sudo docker start flexget
