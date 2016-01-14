@@ -5,10 +5,13 @@ RUN apt-get install -y curl && apt-get remove -y python-pip && apt-get clean
 RUN curl https://bootstrap.pypa.io/get-pip.py | python
 RUN pip install -U pip
 
+
 COPY flexget/requirements.txt /root/requirements.txt
 RUN pip install -r /root/requirements.txt --ignore-installed
 
 VOLUME /root/Storage
+
+WORKDIR /root
 
 CMD /root/flexget.sh
 

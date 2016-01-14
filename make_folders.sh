@@ -1,5 +1,4 @@
 #!/bin/bash
-source ~/.flexget/export.sh
 mkdir -p ~/.flexget
 mkdir -p ~/.transmission
 mkdir -p ~/Storage/Downloads/incomplete
