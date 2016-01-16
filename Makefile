@@ -42,7 +42,7 @@ runpushfileserver: fileserverimage runfileserver pushfileserver
 fileserverimage:
 	sudo docker build --rm=true -t tokko/fileserver:latest -f fileserver/Dockerfile .
 
-runfileserver: 
+runfileserver: fileserverimage
 	(sudo docker ps | grep fileserver && sudo docker start fileserver) || fileserver/start_fileserver.sh 
 
 
