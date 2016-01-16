@@ -1,6 +1,6 @@
 #!/bin/bash
-OUTPUT = dpkg -l | grep docker-hypriot
-if [ $OUTPUT == "" ] ; then
+O=$(dpkg -l | grep docker-hypriot)
+if [ "$O" == "" ] ; then
 	sudo apt-get update
 	sudo apt-get install -y cron curl make
 	wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
@@ -33,6 +33,7 @@ cat mycron | grep "export" && echo "export already setup" || echo "@reboot sourc
 crontab mycron
 rm mycron
 
-sleep 30 && make runflexgetauth TRAKT_PIN=$1
+#sleep 15 && make runflexgetauth TRAKT_PIN=$1
 
-./update.sh
+./update.sh $1
+#sudo docker exec flexget "flexget trakt auth" "$TRAKT_ACCOUNT $1"

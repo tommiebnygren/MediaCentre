@@ -1,4 +1,7 @@
-all: flexgetimage transmissionimage fileserverimage
+all: env flexgetimage transmissionimage fileserverimage
+
+env: export.sh
+	./export.sh
 
 flexgetimage: flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/flexget.sh make_folders.sh flexget/requirements.txt
 	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
@@ -22,7 +25,6 @@ runflexget: flexgetimage
 
 runflexgetauth: 
 	#sudo docker pull tokko/flexget:latest
-	./update.sh
 	flexget/start_flexget.sh $(TRAKT_PIN)
 	#sudo docker run --rm=true -ti -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(HOME)/.flexget:/root/.flexget -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest /root/auth.sh $(TRAKT_PIN)
 
