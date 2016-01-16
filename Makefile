@@ -5,10 +5,13 @@ env: export.sh
 
 flexgetimage: flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/flexget.sh make_folders.sh flexget/requirements.txt
 	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
-	sudo docker build --rm=true -t tokko/flexget:latest .
+	sudo docker build --no-cache=true --rm=true -t tokko/flexget:latest .
 
 pushflexget: flexgetimage
 	sudo docker push tokko/flexget:latest
+
+pushtransmission: transmissionimage
+	sudo docker push tokko/transmission:latest
 
 transmissionimage: 
 	sudo docker build --rm=true -t tokko/transmission:latest -f transmission/Dockerfile.transmission .
