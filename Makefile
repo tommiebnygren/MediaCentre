@@ -52,6 +52,15 @@ runfileserver: fileserverimage
 pushfileserver: fileserverimage
 	sudo docker push tokko/fileserver:latest
 
+sonarrimage: sonarr/*
+	sudo docker build -t tokko/sonarr:latest -f sonarr/Dockerfile sonarr
+
+pushsonarr: sonarrimage
+	sudo docker push tokko/sonarrimage:latest
+
+runsonarr: sonarrimage
+	sudo docker run -p 8989:8989 --name=sonarr tokko/sonarr:latest &
+
 install:
 	sh install_host.sh
 
