@@ -1,5 +1,6 @@
 #!/bin/bash
 source ~/.flexget/export.sh
+mkdir -p $HOME/.flexget
 OP=$(sudo docker ps --all | grep "flexget")
 if [ "$OP" == "" ] ; then
 	echo "starting"

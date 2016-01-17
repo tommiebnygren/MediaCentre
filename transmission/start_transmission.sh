@@ -1,5 +1,6 @@
 #!/bin/bash
 source ~/.flexget/export.sh
+mkdir -p $HOME/.transmission
 if [ "$1" == "-rm" ] ; then
 	sudo docker rm -f transmission
 	$1 = ""

@@ -35,17 +35,17 @@
               what:
                 - emit_series: yes
               from:
-                - search_rss: "http://kickass.to/tv/?rss=1"
-                - torrentz: verified
+                #- search_rss: "http://kickass.to/tv/?rss=1"
+                #- torrentz: verified
                 - kat:
                     category: all
                     verified: yes
-                - publichd:
-                    category:
-                    -  BluRay 720p
-                    -  BluRay 1080p 
-                    -  BRRip
-                - search_rss: http://showrss.info/rss.php?user_id=250602&hd=2&proper=null
+                #- publichd:
+                #    category:
+                #    -  BluRay 720p
+                #    -  BluRay 1080p 
+                #    -  BRRip
+                #- search_rss: http://showrss.info/rss.php?user_id=250602&hd=2&proper=null
         interval: 3 hour  # Search for expected episodes again every hour
         exists_series:
           - /root/Storage/TV Shows/
@@ -112,12 +112,12 @@
           from:
             - kat:
                 category: movies
-            - torrentz: good
-            - publichd:
-                category:
-                  - BluRay 720p
-                  - BluRay 1080p
-                  - BRRip
+            #- torrentz: good
+            #- publichd:
+            #    category:
+            #      - BluRay 720p
+            #      - BluRay 1080p
+            #      - BRRip
         movie_queue: accept
         quality: 720p-1080p
         transmission:
