@@ -22,7 +22,7 @@ fi
 RES=sudo docker pull tokko/sonarr:latest | grep "newer image"
 RES1=sudo docker ps --all | grep "sonarr"
 if [ "$RES" != "" ] || [ "$RES1" == "" ] ; then
-	sudo docker run --restart=always -p 8989:8989 --name sonarr -v $MEDIA_PATH:/root/Storage -v $HOME/.sonarr:/root/.config/NzbDrone tokko/sonarr:latest &
+	sudo docker run --restart=always -p 8989:8989 --name sonar -v $MEDIA_PATH:/root/Storage -v $HOME/.sonarr:/root/.config/NzbDrone tokko/sonarr:latest &
 else
 	sudo docker start sonarr
 fi	
