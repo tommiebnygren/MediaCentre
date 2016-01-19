@@ -1,11 +1,10 @@
-all: env flexgetimage transmissionimage fileserverimage
+all: env flexgetimage transmissionimage fileserverimage sonarrimage
 
 env: export.sh
 	./export.sh
 
-flexgetimage: flexget/Dockerfile.base Dockerfile.rpi flexget/config.yml_template flexget/flexget.sh make_folders.sh flexget/requirements.txt
-	cat Dockerfile.rpi flexget/Dockerfile.base > Dockerfile
-	sudo docker build --no-cache=true --rm=true -t tokko/flexget:latest .
+flexgetimage: flexget/Dockerfile flexget/config.yml_template flexget/flexget.sh flexget/make_folders.sh flexget/requirements.txt
+	sudo docker build --rm=true -t tokko/flexget:latest -f flexget/Dockerfile .
 
 pushflexget: flexgetimage
 	sudo docker push tokko/flexget:latest
@@ -14,7 +13,7 @@ pushtransmission: transmissionimage
 	sudo docker push tokko/transmission:latest
 
 transmissionimage: 
-	sudo docker build --rm=true -t tokko/transmission:latest -f transmission/Dockerfile.transmission .
+	sudo docker build --rm=true -t tokko/transmission:latest -f transmission/Dockerfile .
 
 runtransmission: transmissionimage
 	(sudo docker ps --all | grep "transmission") && sudo docker rm -f transmission || echo "no need to remove"
@@ -32,13 +31,14 @@ runflexgetauth:
 	#sudo docker run --rm=true -ti -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(HOME)/.flexget:/root/.flexget -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest /root/auth.sh $(TRAKT_PIN)
 
 
-runprodi: flexgetimage
-	sudo docker run -ti -rm=true -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(MEDIA_PATH):/root/Storage -v $(HOME)/.flexget:/root/.flexget tokko/flexget:latest /bin/bash
+runflexgeti: flexgetimage
+	sudo docker run -ti --rm=true -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(MEDIA_PATH):/root/Storage -v $(HOME)/.flexget:/root/.flexget tokko/flexget:latest /bin/bash
 
 pushall: all
 	sudo docker push tokko/flexget:latest
 	sudo docker push tokko/transmission:latest
 	sudo docker push tokko/fileserver:latest
+	sudo docker push tokko/sonarr:latest
 
 runpushfileserver: fileserverimage runfileserver pushfileserver
 

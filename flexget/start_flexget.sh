@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.flexget/export.sh
+source ~/.bashrc
 mkdir -p $HOME/.flexget
 OP=$(sudo docker ps --all | grep "flexget")
 if [ "$OP" == "" ] ; then

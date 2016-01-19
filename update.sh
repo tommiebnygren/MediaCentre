@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.flexget/export.sh
+source ~/.bashrc
 
 RES=sudo docker pull tokko/transmission:latest | grep "newer image"
 RES1=sudo docker ps --all | grep "transmission"

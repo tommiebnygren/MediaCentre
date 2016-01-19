@@ -1,4 +1,4 @@
-FROM hypriot/rpi-python
+FROM $DOCKER_BASE_IMAGE
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FDA5DFFC
 RUN echo "deb http://apt.sonarr.tv/ master main" | sudo tee /etc/apt/sources.list.d/sonarr.list

@@ -15,8 +15,8 @@ fi
 mkdir -p ~/.flexget	
 mkdir -p ~/.transmission
 
-source export.sh
-cp export.sh ~/.flexget
+./export.sh
+source ~/.bashrc
 
 UPDATE_COMMAND="curl $UPDATE_IP:$UPDATE_PORT/update.sh | sh"
 
