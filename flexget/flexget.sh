@@ -1,7 +1,11 @@
 #!/bin/bash
 #rm -f/root/requirements.txt
 
-/root/make_folders.sh
+mkdir -p ~/.flexget
+mkdir -p /root/Storage/Downloads/incomplete
+mkdir -p /root/Storage/Downloads/torrents
+mkdir -p /root/Storage/TV\ Shows
+mkdir -p /root/Storage/Movies
 
 cp /root/config.yml_template /root/.flexget/config.yml
 perl -pi -e "s/TRAKT_USERNAME/$TRAKT_USERNAME/g" /root/.flexget/config.yml

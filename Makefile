@@ -3,7 +3,7 @@ all: env flexgetimage transmissionimage fileserverimage sonarrimage
 env: export.sh
 	./export.sh
 
-flexgetimage: flexget/Dockerfile flexget/config.yml_template flexget/flexget.sh flexget/make_folders.sh flexget/requirements.txt
+flexgetimage: flexget/Dockerfile flexget/config.yml_template flexget/flexget.sh flexget/requirements.txt
 	sudo docker build --rm=true -t tokko/flexget:latest -f flexget/Dockerfile .
 
 pushflexget: flexgetimage
