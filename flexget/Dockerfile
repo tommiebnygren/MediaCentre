@@ -1,6 +1,6 @@
 FROM ubuntu
 
-VOLUME /root/Storage
+#VOLUME /root/Storage
 
 WORKDIR /root
 
