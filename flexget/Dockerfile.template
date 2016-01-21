@@ -1,6 +1,6 @@
-FROM ubuntu
+FROM resin/rpi-raspbian:jessie
 
-VOLUME /root/Storage
+#VOLUME /root/Storage
 
 WORKDIR /root
 

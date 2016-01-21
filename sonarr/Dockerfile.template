@@ -9,7 +9,7 @@ WORKDIR /root
 
 EXPOSE 8989
 
-VOLUME /root/.config/NzbDrone
-VOLUME /root/Storage
+#VOLUME /root/.config/NzbDrone
+#VOLUME /root/Storage
 
 CMD mono /opt/NzbDrone/NzbDrone.exe

@@ -1,9 +1,11 @@
-all: env flexgetimage transmissionimage fileserverimage sonarrimage
+SHELL := /bin/bash
+all: env flexgetimage transmissionimage sonarrimage
 
 env: export.sh
 	./export.sh
 
-flexgetimage: flexget/Dockerfile flexget/config.yml_template flexget/flexget.sh flexget/requirements.txt
+flexgetimage: flexget/*
+	cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 flexget/Dockerfile.template) >flexget/Dockerfile
 	sudo docker build --rm=true -t tokko/flexget:latest -f flexget/Dockerfile .
 
 pushflexget: flexgetimage
@@ -12,7 +14,8 @@ pushflexget: flexgetimage
 pushtransmission: transmissionimage
 	sudo docker push tokko/transmission:latest
 
-transmissionimage: 
+transmissionimage: transmission/*
+	cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 transmission/Dockerfile.template) > transmission/Dockerfile
 	sudo docker build --rm=true -t tokko/transmission:latest -f transmission/Dockerfile .
 
 runtransmission: transmissionimage
@@ -26,9 +29,7 @@ runflexget: flexgetimage
 	sudo docker rm -f flexget ; ./start_flexget.sh
 
 runflexgetauth: 
-	#sudo docker pull tokko/flexget:latest
 	flexget/start_flexget.sh $(TRAKT_PIN)
-	#sudo docker run --rm=true -ti -e TRAKT_USERNAME=$(TRAKT_USERNAME) -e TRAKT_ACCOUNT=$(TRAKT_ACCOUNT) -v $(HOME)/.flexget:/root/.flexget -v $(MEDIA_PATH):/root/Storage tokko/flexget:latest /root/auth.sh $(TRAKT_PIN)
 
 
 runflexgeti: flexgetimage
@@ -42,7 +43,7 @@ pushall: all
 
 runpushfileserver: fileserverimage runfileserver pushfileserver
 
-fileserverimage:
+fileserverimage: fileserver/* update.sh
 	sudo docker build --rm=true -t tokko/fileserver:latest -f fileserver/Dockerfile .
 
 runfileserver: fileserverimage
@@ -53,6 +54,7 @@ pushfileserver: fileserverimage
 	sudo docker push tokko/fileserver:latest
 
 sonarrimage: sonarr/*
+	cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 sonarr/Dockerfile.template) > sonarr/Dockerfile
 	sudo docker build -t tokko/sonarr:latest -f sonarr/Dockerfile sonarr
 
 pushsonarr: sonarrimage

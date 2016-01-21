@@ -1,5 +1,5 @@
 #!/bin/bash
-source ~/.bashrc
+#source ~/.bashrc
 mkdir -p $HOME/.transmission
 if [ "$1" == "-rm" ] ; then
 	sudo docker rm -f transmission

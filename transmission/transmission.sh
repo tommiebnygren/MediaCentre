@@ -4,7 +4,7 @@ mkdir -p /media/Storage/Downloads/torrents
 mkdir -p /media/Storage/TV\ Shows
 mkdir -p /media/Storage/Movies
 mkdir -p /var/lib/transmission-daemon/info /var/lib/transmission-daemon/downloads
-chmod -R 666 /media/Storage
+chmod -R 777 /media/Storage
 
 chown -R debian-transmission /var/lib/transmission-daemon
 chgrp -R debian-transmission /var/lib/transmission-daemon
