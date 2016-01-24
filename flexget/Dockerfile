@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 		python-dbus \
 		python-pip \
 		python-virtualenv \
-		python-setuptools  \
+		python-setuptools  && \
 		rm -rf /var/lib/apt/lists/*
 
 RUN pip install transmissionrpc 

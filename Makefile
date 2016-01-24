@@ -64,7 +64,7 @@ runsonarr: sonarrimage
 	sudo docker run -p 8989:8989 --name=sonarr tokko/sonarr:latest &
 
 pleximage: plex/*
-	sudo docker build -t tokko/plex:latest -f plex/Dockerfile .
+	sudo docker build -t tokko/plex:latest -f plex/Dockerfile plex
 
 install:
 	sh install_host.sh
