@@ -156,3 +156,8 @@
           finished_for: 12 hours
           transmission_seed_limits: yes
           enabled: yes
+web_server:
+  bind: 0.0.0.0
+  port: 5050
+api: yes
+webui: yes

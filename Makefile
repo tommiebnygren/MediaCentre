@@ -5,7 +5,7 @@ env: export.sh
 	./export.sh
 
 flexgetimage: flexget/*
-	cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 flexget/Dockerfile.template) >flexget/Dockerfile
+	#cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 flexget/Dockerfile.template) >flexget/Dockerfile
 	sudo docker build --rm=true -t tokko/flexget:latest -f flexget/Dockerfile .
 
 pushflexget: flexgetimage
@@ -15,7 +15,7 @@ pushtransmission: transmissionimage
 	sudo docker push tokko/transmission:latest
 
 transmissionimage: transmission/*
-	cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 transmission/Dockerfile.template) > transmission/Dockerfile
+	#cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 transmission/Dockerfile.template) > transmission/Dockerfile
 	sudo docker build --rm=true -t tokko/transmission:latest -f transmission/Dockerfile .
 
 runtransmission: transmissionimage
@@ -54,7 +54,7 @@ pushfileserver: fileserverimage
 	sudo docker push tokko/fileserver:latest
 
 sonarrimage: sonarr/*
-	cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 sonarr/Dockerfile.template) > sonarr/Dockerfile
+	#cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 sonarr/Dockerfile.template) > sonarr/Dockerfile
 	sudo docker build -t tokko/sonarr:latest -f sonarr/Dockerfile sonarr
 
 pushsonarr: sonarrimage
