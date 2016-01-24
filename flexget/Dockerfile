@@ -1,7 +1,7 @@
 #FROM hypriot/rpi-python:latest
 FROM resin/raspberrypi2-buildpack-deps:jessie
 
-VOLUME /root/Storage
+#VOLUME /root/Storage
 
 WORKDIR /root
 
