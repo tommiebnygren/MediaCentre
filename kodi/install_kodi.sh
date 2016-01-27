@@ -26,3 +26,5 @@ sudo usermod -a -G input pi
 sudo usermod -a -G dialout pi
 sudo usermod -a -G plugdev pi
 sudo usermod -a -G tty pi
+
+sudo echo /etc/rc.local >> /usr/local/bin/startkodi &
