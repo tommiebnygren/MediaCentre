@@ -35,21 +35,21 @@
               what:
                 - emit_series: yes
               from:
-                - search_rss: "http://kickass.to/tv/?rss=1"
-                - torrentz: verified
+                #- search_rss: "http://kickass.to/tv/?rss=1"
+                #- torrentz: verified
                 - kat:
                     category: all
                     verified: yes
-                - publichd:
-                    category:
-                    -  BluRay 720p
-                    -  BluRay 1080p 
-                    -  BRRip
-                - search_rss: http://showrss.info/rss.php?user_id=250602&hd=2&proper=null
+                #- publichd:
+                #    category:
+                #    -  BluRay 720p
+                #    -  BluRay 1080p 
+                #    -  BRRip
+                #- search_rss: http://showrss.info/rss.php?user_id=250602&hd=2&proper=null
         interval: 3 hour  # Search for expected episodes again every hour
         exists_series:
-          - /media/STORAGE/SUBFOLDER/TV Shows/
-          - /media/STORAGE/SUBFOLDER/Downloads/incomplete
+          - /root/Storage/TV Shows/
+          - /root/Storage/Downloads/incomplete
         regexp:
           reject:
             - \b(duo|tri|quadri|tetra|penta)logy\b: {from: title} 
@@ -81,11 +81,11 @@
         #seen: local
         torrent_alive: 2
         transmission:
-          host: localhost
+          host: transmission
           port: 9091
-          username: TRANSMISSION_USERNAME
-          password: TRANSMISSION_PASSWORD
-          path: /media/STORAGE/SUBFOLDER/TV Shows/{{series_name|pathscrub}}/S{{"%02d"|format(series_season)}}  
+          username: transmission
+          password: transmission
+          path: /root/Storage/TV Shows/{{series_name|pathscrub}}/S{{"%02d"|format(series_season)}}  
           main_file_only: yes
           content_filename: "{{ tvdb_series_name }} - {{ tvdb_season }}x{{ tvdb_episode|pad(2) }} - {{ tvdb_ep_name|default('Missing title') }}"
 
@@ -112,28 +112,28 @@
           from:
             - kat:
                 category: movies
-            - torrentz: good
-            - publichd:
-                category:
-                  - BluRay 720p
-                  - BluRay 1080p
-                  - BRRip
+            #- torrentz: good
+            #- publichd:
+            #    category:
+            #      - BluRay 720p
+            #      - BluRay 1080p
+            #      - BRRip
         movie_queue: accept
         quality: 720p-1080p
         transmission:
-          host: localhost
+          host: transmission
           port: 9091
-          username: TRANSMISSION_USERNAME
-          password: TRANSMISSION_PASSWORD
-          path: /media/STORAGE/SUBFOLDER/Movies
+          username: transmission
+          password: transmission
+          path: /root/Storage/Movies
         interval: 3 hour
  
 #      subtitles:
 #        priority: 5
 #        filesystem:
 #          path:
-#            - /media/STORAGE/SUBFOLDER/TV Shows/
-#            - /media/STORAGE/SUBFOLDER/Movies/
+#            - /root/Storage/TV Shows/
+#            - /root/Storage/Movies/
 #          recursive: yes
 #        accept_all: yes
 #        subliminal:
@@ -149,10 +149,10 @@
       cleanup:
         priority: 6
         clean_transmission:
-          host: localhost
+          host: transmission
           port: 9091
-          username: TRANSMISSION_USERNAME
-          password: TRANSMISSION_PASSWORD
+          username: transmission
+          password: transmission
           finished_for: 12 hours
           transmission_seed_limits: yes
           enabled: yes

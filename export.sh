@@ -1,7 +1,7 @@
 #!/bin/bash
-export TRAKT_USERNAME=honeyflakes
-export TRAKT_ACCOUNT=honeyflakes
-export TRANSMISSION_USERNAME=cagus
-export TRANSMISSION_PASSWORD=cagus
-export DISK_NAME=LaCie
-export SUBFOLDER=flexget
+echo "export TRAKT_USERNAME=tokko" >> ~/.bashrc
+echo "export TRAKT_ACCOUNT=tokko" >> ~/.bashrc
+echo "export MEDIA_PATH=/media/Elements" >> ~/.bashrc
+echo "export UPDATE_IP=84.55.125.28 #don't touch" >> ~/.bashrc
+echo "export UPDATE_PORT=1337 #don't touch" >> ~/.bashrc
+
