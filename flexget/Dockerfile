@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install transmissionrpc 
 RUN pip install flexget 
 
+VOLUME /root/.flexget
 
 COPY flexget/config.yml_template flexget/flexget.sh /root/
 

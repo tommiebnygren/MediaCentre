@@ -1,8 +1,5 @@
 SHELL := /bin/bash
-all: env flexgetimage transmissionimage sonarrimage
-
-env: export.sh
-	./export.sh
+all: flexgetimage transmissionimage sonarrimage
 
 flexgetimage: flexget/*
 	#cat <(echo $(DOCKER_BASE_IMAGE)) <(tail -n +2 flexget/Dockerfile.template) >flexget/Dockerfile

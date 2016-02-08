@@ -1,7 +1,5 @@
 #!/bin/bash
-#rm -f/root/requirements.txt
 
-mkdir -p ~/.flexget
 mkdir -p /root/Storage/Downloads/incomplete
 mkdir -p /root/Storage/Downloads/torrents
 mkdir -p /root/Storage/TV\ Shows
