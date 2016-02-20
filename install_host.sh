@@ -2,7 +2,7 @@
 O=$(dpkg -l | grep docker-hypriot)
 if [ "$O" == "" ] ; then
 	sudo apt-get update
-	sudo apt-get install -y cron curl make
+	sudo apt-get install -y cron curl make kodi
 	wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
 	sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
 	sudo docker daemon 1>/dev/null &
