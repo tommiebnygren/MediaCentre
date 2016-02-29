@@ -4,6 +4,7 @@ sudo apt-get -y dist-upgrade
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y cron curl make kodi
+sudo perl -pi -e "s/ENABLED=0/ENABLED=1/g" /etc/default/kodi
 wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
 sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
 sudo docker daemon 1>/dev/null &
