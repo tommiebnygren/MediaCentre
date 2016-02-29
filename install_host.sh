@@ -1,18 +1,15 @@
 #!/bin/bash
-O=$(dpkg -l | grep docker-hypriot)
-if [ "$O" == "" ] ; then
-	sudo apt-get update
-	sudo apt-get install -y cron curl make kodi
-	wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
-	sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
-	sudo docker daemon 1>/dev/null &
-	rm -f docker-hypriot_1.9.1-1_armhf.deb*
-	sudo systemctl enable docker
-	sudo gpasswd -a $USER docker
-fi
-
-mkdir -p ~/.flexget	
-mkdir -p ~/.transmission
+sudo apt-get update
+sudo apt-get -y dist-upgrade
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get install -y cron curl make kodi
+wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
+sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
+sudo docker daemon 1>/dev/null &
+rm -f docker-hypriot_1.9.1-1_armhf.deb*
+sudo systemctl enable docker
+sudo gpasswd -a $USER docker
 
 ./export.sh
 source ~/.bashrc
@@ -27,7 +24,4 @@ cat mycron | grep "export" && echo "export already setup" || echo "@reboot sourc
 crontab mycron
 rm mycron
 
-#sleep 15 && make runflexgetauth TRAKT_PIN=$1
-
-./update.sh $1
-#sudo docker exec flexget "flexget trakt auth" "$TRAKT_ACCOUNT $1"
+sudo reboot
