@@ -12,7 +12,12 @@ rm -f docker-hypriot_1.9.1-1_armhf.deb*
 sudo systemctl enable docker
 sudo gpasswd -a $USER docker
 sudo chown -R 777 $MEDIA_PATH
+sudo usermod -a -G audio kodi
+sudo usermod -a -G video kodi
 sudo usermod -a -G input kodi
+sudo usermod -a -G dialout kodi
+sudo usermod -a -G plugdev kodi
+sudo usermod -a -G tty kodi
 ./export.sh
 source ~/.bashrc
 
