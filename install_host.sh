@@ -11,7 +11,8 @@ sudo docker daemon 1>/dev/null &
 rm -f docker-hypriot_1.9.1-1_armhf.deb*
 sudo systemctl enable docker
 sudo gpasswd -a $USER docker
-
+sudo chown -R 777 $MEDIA_PATH
+sudo usermod -a -G input kodi
 ./export.sh
 source ~/.bashrc
 
