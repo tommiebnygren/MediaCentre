@@ -1,4 +1,5 @@
 #!/bin/bash
+./export.sh
 sudo apt-get update
 sudo apt-get -y dist-upgrade
 sudo apt-get update
@@ -18,7 +19,6 @@ sudo usermod -a -G input kodi
 sudo usermod -a -G dialout kodi
 sudo usermod -a -G plugdev kodi
 sudo usermod -a -G tty kodi
-./export.sh
 #source ~/.bashrc
 
 #UPDATE_COMMAND="curl $UPDATE_IP:$UPDATE_PORT/update.sh | sh"
