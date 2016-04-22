@@ -19,16 +19,16 @@ sudo usermod -a -G dialout kodi
 sudo usermod -a -G plugdev kodi
 sudo usermod -a -G tty kodi
 ./export.sh
-source ~/.bashrc
+#source ~/.bashrc
 
-UPDATE_COMMAND="curl $UPDATE_IP:$UPDATE_PORT/update.sh | sh"
+#UPDATE_COMMAND="curl $UPDATE_IP:$UPDATE_PORT/update.sh | sh"
 
-crontab -l >> mycron
+#crontab -l >> mycron
 
-cat mycron | grep "update.sh" && echo "update already setup" || echo "45 23 * * * $UPDATE_COMMAND" >> mycron && echo "@reboot $UPDATE_COMMAND" >> mycron
-cat mycron | grep "export" && echo "export already setup" || echo "@reboot source $HOME/.flexget/export.sh" >> mycron
+#cat mycron | grep "update.sh" && echo "update already setup" || echo "45 23 * * * $UPDATE_COMMAND" >> mycron && echo "@reboot $UPDATE_COMMAND" >> mycron
+#cat mycron | grep "export" && echo "export already setup" || echo "@reboot source $HOME/.flexget/export.sh" >> mycron
 
-crontab mycron
-rm mycron
+#crontab mycron
+#rm mycron
 
 sudo reboot
