@@ -1,10 +1,10 @@
 #!/bin/bash
-./export.sh
 sudo apt-get update
 sudo apt-get -y dist-upgrade
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -y cron curl make kodi
+./export.sh
 sudo perl -pi -e "s/ENABLED=0/ENABLED=1/g" /etc/default/kodi
 wget http://downloads.hypriot.com/docker-hypriot_1.9.1-1_armhf.deb
 sudo dpkg -i docker-hypriot_1.9.1-1_armhf.deb
