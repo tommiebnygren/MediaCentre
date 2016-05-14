@@ -1,0 +1,8 @@
+proc            /proc           proc    defaults          0       0
+/dev/mmcblk0p6  /boot           vfat    defaults          0       2
+/dev/mmcblk0p7  /               ext4    defaults,noatime  0       1
+# a swapfile is not a swap partition, no line here
+#   use  dphys-swapfile swap[on|off]  for that
+
+UUID=D26E51776E515577 /media/pp ntfs-3g auto,users,permissions 0 0
+#/dev/sda1: LABEL="passport" UUID="D26E51776E515577" TYPE="ntfs" PARTUUID="5d6c1884-01"
