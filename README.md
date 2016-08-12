@@ -15,3 +15,6 @@ This may take some while as it is downloading multiple docker containers.
 Sometimes the flexget authorization token times out prematurely, aquire a new pin and run the update command again.
 
 Now you should have a transmission client on localhost:9091 and a sickrage server on localhost:8081.
+
+To install couch potato container
+docker run --link transmission -p 5050:5050 -v /media/Elements:/root/Storage --name=couchpotato -d tokko/couchpotato:latest
